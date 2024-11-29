@@ -1,0 +1,41 @@
+Executing the Queries
+1. Display details of all transactions of type Withdraw:
+
+SQL
+SELECT *
+FROM TRANSACT
+WHERE TYPE = 'Withdraw';
+Use code with caution.
+
+2. Write query to display ANO, ANAME and AMOUNT of all deposit and Withdraws done in month of May2017:
+
+SQL
+SELECT a.ANO, a.ANAME, t.AMOUNT
+FROM TRANSACT t
+INNER JOIN ACCOUNT a ON t.ANO = a.ANO
+WHERE t.DOT BETWEEN '2017-05-01' AND '2017-05-31';
+Use code with caution.
+
+3. Write query to display information transaction where amount > 1000:
+
+SQL
+SELECT *
+FROM TRANSACT
+WHERE AMOUNT > 1000;
+Use code with caution.
+
+4. Write a query to get info about Transaction done by Ali Raza using inner join:
+
+SQL
+SELECT t.*
+FROM TRANSACT t
+INNER JOIN ACCOUNT a ON t.ANO = a.ANO
+WHERE a.ANAME = 'Ali Reza';
+Use code with caution.
+
+5. Write a query to update the type of transaction from Transaction table where TRN_NO = 'T002' to 'Pending':
+
+SQL
+UPDATE TRANSACT
+SET TYPE = 'Pending'
+WHERE TRNO = 'T002';

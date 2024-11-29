@@ -1,0 +1,40 @@
+Executing the Queries
+1. List fruits that are ripe after 12/04/2024:
+
+SQL
+SELECT Fruit_name
+FROM Fruit
+WHERE Ripe_date > '2024-12-04';
+Use code with caution.
+
+2. Get the average price of fruits grouped by taste:
+
+SQL
+SELECT Taste, AVG(Price) AS Avg_Price
+FROM Fruit
+GROUP BY Taste;
+Use code with caution.
+
+3. Find the cheapest fruit:
+
+SQL
+SELECT Fruit_name
+FROM Fruit
+WHERE Price = (SELECT MIN(Price) FROM Fruit);
+Use code with caution.
+
+4. Write a SQL query for union to combine fruit names and supplier names from both tables.
+
+SQL
+SELECT Fruit_name FROM Fruit
+UNION
+SELECT Supplier_name FROM Supplier;
+Use code with caution.
+
+5. Display the list of supplier who supplies bitter taste fruits:
+
+SQL
+SELECT s.Supplier_name
+FROM Supplier s
+INNER JOIN Fruit f ON s.Supplier_id = f.Supplier_id
+WHERE f.Taste = 'bitter';

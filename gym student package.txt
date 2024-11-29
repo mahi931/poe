@@ -1,0 +1,32 @@
+Executing the Queries
+1. Write a SQL queries to retrieve all the names of students in student table:
+
+SQL
+SELECT stu_name FROM Student;
+Use code with caution.
+
+2. Write a SQL query to find package which have amount more than 5000:
+
+SQL
+SELECT * FROM Package WHERE P_amount > 5000;
+Use code with caution.
+
+3. Write a SQL query to get details of students and their package details:
+
+SQL
+SELECT s.stu_name, p.P_name, p.P_duration, p.P_amount
+FROM Student s
+INNER JOIN Package p ON s.P_id = p.P_id;
+Use code with caution.
+
+4. Write a SQL query to add a column GST number in gym table:
+
+SQL
+ALTER TABLE Gym ADD COLUMN GST_number VARCHAR(50);
+Use code with caution.
+
+5. Write a SQL query to remove students below age 20:
+
+SQL
+DELETE FROM Student
+WHERE stu_age < 20;

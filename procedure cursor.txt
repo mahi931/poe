@@ -1,0 +1,53 @@
+SQL
+CREATE PROCEDURE EvaluateStudentGPAs
+AS
+BEGIN
+    DECLARE @StudentID INT, @Name VARCHAR(50), @GPA DECIMAL(3, 2);
+
+    DECLARE GPA_Cursor CURSOR FOR
+    SELECT StudentID, Name, GPA
+    FROM Students;
+
+    OPEN GPA_Cursor;
+
+    FETCH NEXT FROM GPA_Cursor INTO @StudentID, @Name, @GPA;
+
+    WHILE @@FETCH_STATUS = 0
+    BEGIN
+        IF @GPA < 3.0
+            PRINT 'Student ' + @Name + ' has a low GPA of ' + CAST(@GPA AS VARCHAR(10));
+        ELSE
+            PRINT 'Student ' + @Name + ' has a satisfactory GPA of ' + CAST(@GPA AS VARCHAR(10));
+        END IF;
+
+        FETCH NEXT FROM GPA_Cursor INTO @StudentID, @Name, @GPA;
+    END;
+
+    CLOSE GPA_Cursor;
+    DEALLOCATE GPA_Cursor;
+END;
+Use code with caution.
+
+Explanation:
+
+Cursor Declaration:
+
+A cursor named GPA_Cursor is declared to iterate over the Students table.
+The cursor fetches StudentID, Name, and GPA columns for each row.
+Cursor Loop:
+
+The FETCH NEXT statement fetches the next row from the cursor.
+The WHILE @@FETCH_STATUS = 0 loop continues as long as there are more rows to process.
+Conditional Evaluation:
+
+Inside the loop, an IF condition checks the GPA value:
+If GPA is less than 3.0, a message is printed indicating a low GPA.
+Otherwise, a message is printed indicating a satisfactory GPA.
+Cursor Closing:
+
+The CLOSE statement closes the cursor.
+The DEALLOCATE statement deallocates the cursor resources.
+To execute this procedure:
+
+SQL
+EXEC EvaluateStudentGPAs;

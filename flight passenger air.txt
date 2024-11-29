@@ -1,0 +1,26 @@
+Executing the Queries
+1. Write a query to retrieve all flights departing from New York:
+
+SQL
+SELECT *
+FROM Flights
+WHERE DepartureCity = 'New York';
+Use code with caution.
+
+2. Write a query to list all passengers for the flight with Flight Number = 'AA101':
+
+SQL
+SELECT p.Name, p.SeatNumber
+FROM Passengers p
+INNER JOIN Flights f ON p.FlightID = f.FlightID
+WHERE f.FlightNumber = 'AA101';
+Use code with caution.
+
+3. Write a query to retrieve all flights operated by the airline "Delta Airlines":
+
+SQL
+SELECT f.*
+FROM Flights f
+INNER JOIN Aircraft a ON f.FlightID = a.AircraftID
+INNER JOIN Airlines al ON a.AirlineID = al.AirlineID
+WHERE al.Name = 'Delta Airlines';

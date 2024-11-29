@@ -1,0 +1,61 @@
+Creating the Trigger:
+
+SQL
+CREATE TRIGGER CheckGPAForScholarship
+ON Scholarships
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @StudentID INT;
+    SELECT @StudentID = inserted.StudentID FROM inserted;
+
+    IF EXISTS (
+        SELECT *
+        FROM Students
+        WHERE StudentID = @StudentID AND GPA < 3.0
+    )
+    BEGIN
+        RAISERROR('Student with ID %d does not meet the GPA requirement for a scholarship.', 16, 1, @StudentID);
+        ROLLBACK TRANSACTION;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Scholarships
+        SELECT *
+        FROM inserted;
+    END;
+END;
+Use code with caution.
+
+Explanation:
+
+Trigger Creation:
+
+We create an INSTEAD OF INSERT trigger on the Scholarships table. This type of trigger intercepts INSERT operations and allows us to control the insertion process.
+Identifying the Student ID:
+
+We select the StudentID from the inserted table, which contains the data of the row being inserted.
+Checking GPA Requirement:
+
+We use an EXISTS clause to check if a student with the specified StudentID exists in the Students table and if their GPA is less than 3.0.
+Error Handling:
+
+If the GPA is less than 3.0, we raise an error message and rollback the transaction, preventing the insertion.
+Inserting the Scholarship:
+
+If the GPA is 3.0 or higher, we proceed with the insertion of the scholarship record.
+How it Works:
+
+A new scholarship record is attempted to be inserted into the Scholarships table.
+The trigger fires.
+The trigger checks the student's GPA.
+If the GPA is sufficient, the insertion proceeds.
+If the GPA is insufficient, an error is raised, and the insertion is rolled back.
+By using this trigger, we can ensure that only eligible students receive scholarships, maintaining data integrity and preventing invalid records from being inserted into the Scholarships table.
+
+
+
+
+
+
+

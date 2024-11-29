@@ -1,0 +1,57 @@
+Executing the Queries
+1. Find all employees who work in the Sales department and their managers, including the manager's name:
+
+SQL
+SELECT e.employee_name, e.department, m.manager_name
+FROM Employees e
+INNER JOIN Manager m ON e.manager_id = m.manager_id
+WHERE e.department = 'Sales';
+Use code with caution.
+
+2. Display the names, salaries and managers of employees who earn more than $55,000, along with the manager's name:
+
+SQL
+SELECT e.employee_name, e.Salary, m.manager_name
+FROM Employees e
+INNER JOIN Manager m ON e.manager_id = m.manager_id
+WHERE e.Salary > 55000;
+Use code with caution.
+
+3. Calculate the average salary of all employees:
+
+SQL
+SELECT AVG(Salary) AS Average_Salary
+FROM Employees;
+Use code with caution.
+
+4. Find all employees who work in the Sales department:
+
+SQL
+SELECT employee_name
+FROM Employees
+WHERE department = 'Sales';
+Use code with caution.
+
+5. Count the number of employees in each department including managers:
+
+SQL
+SELECT department, COUNT(*) AS employee_count
+FROM Employees
+GROUP BY department;
+Use code with caution.
+
+Remember to execute these queries in your database management system to get the desired results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gemini can 

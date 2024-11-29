@@ -1,0 +1,38 @@
+Executing the Queries
+1. To display Name and Price of all the Accessories in descending order of their Price:
+
+SQL
+SELECT Name, Price
+FROM Accessories
+ORDER BY Price DESC;
+Use code with caution.
+
+2. Write a query to display all details of shop under the area "Nehruplace":
+
+SQL
+SELECT *
+FROM Shoppe
+WHERE Area = 'Nehru Place';
+Use code with caution.
+
+3. Write a query to display maximum price of accessories provided by "ABC Computronics" using subqueries:
+
+SQL
+SELECT MAX(Price)
+FROM Accessories
+WHERE Id = (SELECT Id FROM Shoppe WHERE SName = 'ABC Computronics');
+Use code with caution.
+
+4. Write a query to get info about accessories provided by "Techshoppe":
+
+SQL
+SELECT *
+FROM Accessories
+WHERE Id = (SELECT Id FROM Shoppe WHERE SName = 'Tech Shoppe');
+Use code with caution.
+
+5. Write a query to Delete record from Accessories table where Shop_ID=S04:
+
+SQL
+DELETE FROM Accessories
+WHERE Id = 'S04';

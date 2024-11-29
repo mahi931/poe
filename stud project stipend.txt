@@ -1,0 +1,39 @@
+Executing the Queries
+1. Write a SQL query to select detail of Sangeeta More in Student Details table:
+
+SQL
+SELECT *
+FROM StudentDetails
+WHERE Name = 'Sangeeta More';
+Use code with caution.
+
+2. Write a SQL query to update a project-Nano Tech where Stipend=120000:
+
+SQL
+UPDATE ProjectDetails
+SET Project = 'Nano Tech'
+WHERE Stipend = 120000;
+Use code with caution.
+
+3. Write a SQL query to fetch the number of students working in project GeminiAi:
+
+SQL
+SELECT COUNT(*) AS StudentCount
+FROM ProjectDetails
+WHERE Project = 'GeminiAi';
+Use code with caution.
+
+4. Write a SQL query for calculating average stipend:
+
+SQL
+SELECT AVG(Stipend) AS AverageStipend
+FROM ProjectDetails;
+Use code with caution.
+
+5. Write a SQL query to display the details of students whose Stipend is more than 100000:
+
+SQL
+SELECT s.Name, p.Stipend
+FROM StudentDetails s
+INNER JOIN ProjectDetails p ON s.StudId = p.StudId
+WHERE p.Stipend > 100000;

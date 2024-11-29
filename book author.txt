@@ -1,0 +1,55 @@
+Executing the Queries
+1. Write a SQL query to retrieve the titles of all books that have more than 300 pages.
+
+SQL
+SELECT title
+FROM Books
+WHERE pages > 300;
+Use code with caution.
+
+2. Write a SQL query to find the names of authors who have written more than one book.
+
+SQL
+SELECT a.name
+FROM Authors a
+INNER JOIN Books b ON a.author_id = b.author_id
+GROUP BY a.name
+HAVING COUNT(*) > 1;
+Use code with caution.
+
+3. Write a SQL query to display the title of the book along with the name of its publisher.
+
+SQL
+SELECT b.title, p.name AS publisher_name
+FROM Books b
+INNER JOIN Publishers p ON b.publisher_id = p.publisher_id;
+Use code with caution.
+
+4. Write a SQL query to add a column genre to the Books table.
+
+SQL
+ALTER TABLE Books
+ADD COLUMN genre VARCHAR(50);
+Use code with caution.
+
+5. Write a SQL query to remove the Publishers table from the database.
+
+SQL
+DROP TABLE Publishers;
+Use code with caution.
+
+Remember to execute these queries in your database management system to get the desired results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gemini can 

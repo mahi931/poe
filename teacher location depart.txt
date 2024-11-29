@@ -1,0 +1,36 @@
+Executing the Queries
+1. What is the average salary in the Physics department?
+
+As there is no "Physics" department in the given data, we cannot directly calculate the average salary for this department.
+
+2. When was the most recent and earliest date of joining among all teachers?
+
+SQL
+SELECT MAX(Date_of_Join) AS Latest_Join, MIN(Date_of_Join) AS Earliest_Join
+FROM Teacher;
+Use code with caution.
+
+3. List the teachers who have a salary greater than 20000, along with their respective departments and placement locations.
+
+SQL
+SELECT t.Name, t.Department, l.Place
+FROM Teacher t
+INNER JOIN Location l ON t.Department = l.Department
+WHERE t.Salary > 20000;
+Use code with caution.
+
+4. Who is the female teacher assigned to a department with placement in Paris?
+
+SQL
+SELECT t.Name
+FROM Teacher t
+INNER JOIN Location l ON t.Department = l.Department
+WHERE t.Gender = 'F' AND l.Place = 'Paris';
+Use code with caution.
+
+5. Display the details of teachers in the History department:
+
+SQL
+SELECT *
+FROM Teacher
+WHERE Department = 'History';

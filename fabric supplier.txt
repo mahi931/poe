@@ -1,0 +1,37 @@
+Executing the Queries
+a. Write a query to display only those fabric whose disc is more than 10:
+
+SQL
+SELECT *
+FROM Fabric
+WHERE Disc > 10;
+Use code with caution.
+
+b. Write a query to display the unique types of fabric:
+
+SQL
+SELECT DISTINCT Type
+FROM Fabric;
+Use code with caution.
+
+c. Write a query to modify the fabric shirt by increasing discount by 10:
+
+SQL
+UPDATE Fabric
+SET Disc = Disc + 10
+WHERE Style = 'Shirt';
+Use code with caution.
+
+d. Write a query to delete the record of fabric 'F003' from table:
+
+SQL
+DELETE FROM Fabric
+WHERE FabricID = 'F003';
+Use code with caution.
+
+e. Write a query to display fabric style along with supplier name:
+
+SQL
+SELECT f.Style, s.Supplier
+FROM Fabric f
+INNER JOIN Supplier s ON f.FabricID = s.FabricID;

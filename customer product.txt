@@ -1,0 +1,37 @@
+Executing the Queries
+1. To display those customers whose salary is < 65000:
+
+SQL
+SELECT *
+FROM Customer
+WHERE Salary < 65000;
+Use code with caution.
+
+2. To modify the Designation HR of Customer whose name is "Manoj Kumar" to Analyst:
+
+SQL
+UPDATE Customer
+SET Designation = 'Analyst'
+WHERE Customer_Name = 'ManojKumar';
+Use code with caution.
+
+3. To delete the record whose id is 004:
+
+SQL
+DELETE FROM Customer
+WHERE Customer_id = 004;
+Use code with caution.
+
+4. Find the average salary of all customer:
+
+SQL
+SELECT AVG(Salary) AS Average_Salary
+FROM Customer;
+Use code with caution.
+
+5. Find the product brand from product table ordered by Kiran dev:
+
+SQL
+SELECT Prod_brand
+FROM Product
+WHERE Customer_id = (SELECT Customer_id FROM Customer WHERE Customer_Name = 'KiranDev');

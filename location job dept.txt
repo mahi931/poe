@@ -1,0 +1,41 @@
+Executing the Queries:
+
+List the details about "SMITH".
+
+SQL
+SELECT *
+FROM Employee
+WHERE Last_Name = 'SMITH';
+Use code with caution.
+
+List out the employees who are working in department 20.
+
+SQL
+SELECT *
+FROM Employee
+WHERE Dept_ID = 20;
+Use code with caution.
+
+List our employees with their department names.
+
+SQL
+SELECT e.Empl_ID, e.Last_Name, e.First_Name, d.Name AS Department_Name
+FROM Employee e
+INNER JOIN Department d ON e.Dept_ID = d.Department_ID;
+Use code with caution.
+
+Display department wise employees count.
+
+SQL
+SELECT d.Name AS Department_Name, COUNT(*) AS Employee_Count
+FROM Employee e
+INNER JOIN Department d ON e.Dept_ID = d.Department_ID
+GROUP BY d.Name;
+Use code with caution.
+
+Display all employees in sales or operation departments.
+
+SQL
+SELECT *
+FROM Employee
+WHERE Dept_ID IN (30, 40);

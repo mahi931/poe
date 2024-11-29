@@ -1,0 +1,41 @@
+Executing the Queries
+1. Retrieve the playerIDs, Playernames and matches played by players from India.
+
+SQL
+SELECT Player_ID, Player_Name, Matches
+FROM Player
+WHERE Country = 'India';
+Use code with caution.
+
+2. Calculate the average runs scored by players having above 50 batting average from India.
+
+SQL
+SELECT AVG(p.Runs) AS Avg_Runs
+FROM Player p
+INNER JOIN OtherStats os ON p.Player_ID = os.Player_ID
+WHERE p.Country = 'India' AND os.BattingAverage > 50;
+Use code with caution.
+
+3. Show the player names, countries and strike rates of players from India with an batting average above 50 or more than 300 sixes using subquery.
+
+SQL
+SELECT p.Player_Name, p.Country, os.StrikeRate
+FROM Player p
+INNER JOIN OtherStats os ON p.Player_ID = os.Player_ID
+WHERE (p.Country = 'India' AND os.BattingAverage > 50) OR os.B6s > 300;
+Use code with caution.
+
+4. Display the playernames, countries their Matches for players with first two letters of player names "Ro" or "Vi".
+
+SQL
+SELECT Player_Name, Country, Matches
+FROM Player
+WHERE Player_Name LIKE 'Ro%' OR Player_Name LIKE 'Vi%';
+Use code with caution.
+
+5. Update the centuries of MSDhoni to 20.
+
+SQL
+UPDATE Player
+SET C100s = 20
+WHERE Player_Name = 'Mahendra SinghDhoni';

@@ -1,0 +1,79 @@
+Executing the Queries
+1. Find total no. Of orders:
+
+SQL
+SELECT COUNT(*) AS total_orders
+FROM orders;
+Use code with caution.
+
+Explanation:
+
+COUNT(*) counts the number of rows in the orders table.
+AS total_orders gives an alias to the result column.
+
+2. Calculate the average amount of order:
+
+SQL
+SELECT AVG(total_amount) AS avg_order_amount
+FROM orders;
+Use code with caution.
+
+Explanation:
+
+AVG(total_amount) calculates the average of the total_amount column.
+AS avg_order_amount gives an alias to the result column.
+
+3. Find total amount of order made on 02-04-2024:
+
+SQL
+SELECT SUM(total_amount) AS total_amount_on_2024_04_02
+FROM orders
+WHERE order_date = '2024-04-02';
+Use code with caution.
+
+Explanation:
+
+SUM(total_amount) calculates the sum of the total_amount column.
+WHERE order_date = '2024-04-02' filters the rows where the order_date is '2024-04-02'.
+AS total_amount_on_2024_04_02 gives an alias to the result column.
+
+4. Determine the customer_id that made highest order:
+
+SQL
+SELECT customer_id
+FROM orders
+ORDER BY total_amount DESC
+LIMIT 1;
+Use code with caution.
+
+Explanation:
+
+ORDER BY total_amount DESC sorts the rows by the total_amount column in descending order.
+LIMIT 1 limits the result to the first row, which will be the customer with the highest order.
+
+5. Display the customer name who has made highest no. Of order:
+
+SQL
+SELECT c.customer_name
+FROM customers c
+INNER JOIN (
+    SELECT customer_id, COUNT(*) AS order_count
+    FROM orders
+    GROUP BY customer_id
+    ORDER BY order_count DESC
+    LIMIT 1
+) o ON c.customer_id = o.customer_id;
+Use code with caution.
+
+Explanation:
+
+The inner query:
+
+GROUP BY customer_id groups the orders by customer_id.
+COUNT(*) AS order_count counts the number of orders for each customer.
+ORDER BY order_count DESC sorts the groups by the number of orders in descending order.
+LIMIT 1 limits the result to the group with the highest number of orders.
+The outer query:
+
+INNER JOIN joins the customers table with the result of the inner query based on the customer_id.
+SELECT c.customer_name selects the customer_name from the customers table.

@@ -1,0 +1,83 @@
+CREATE TABLE Company (
+    CompanyID INT PRIMARY KEY,
+    CompanyName VARCHAR(50),
+    ContactPerson VARCHAR(50),
+    ContactEmail VARCHAR(100),
+    ContactNumber VARCHAR(20)
+);
+CREATE TABLE Service (
+    ServiceID INT PRIMARY KEY,
+    ServiceName VARCHAR(50),
+    Description VARCHAR(200),
+    Price DECIMAL(10,2),
+    CompanyID INT,
+    FOREIGN KEY (CompanyID) REFERENCES Company(CompanyID)
+);
+
+1] 1. List all services whose price between $500 and $1000:
+
+SQL
+SELECT Service_Name, Price
+FROM Service
+WHERE Price BETWEEN 500 AND 1000;
+Use code with caution.
+
+Explanation:
+
+SELECT Service_Name, Price selects the Service_Name and Price columns.
+FROM Service specifies the table to query.
+WHERE Price BETWEEN 500 AND 1000 filters the rows where the Price is between 500 and 1000.
+
+2. Retrieve all companies offering a service with a price higher than $800:
+
+SQL
+SELECT Company_Name
+FROM Company
+INNER JOIN Service ON Company.Company_ID = Service.Company_ID
+WHERE Service.Price > 800;
+Use code with caution.
+
+Explanation:
+
+INNER JOIN joins the Company and Service tables based on the Company_ID column.
+WHERE Service.Price > 800 filters the rows where the Price in the Service table is greater than 800.
+SELECT Company_Name selects the Company_Name from the Company table.
+
+3. Retrieve the total number of services offered:
+
+SQL
+SELECT COUNT(*) AS TotalServices
+FROM Service;
+Use code with caution.
+
+Explanation:
+
+COUNT(*) counts the number of rows in the Service table.
+AS TotalServices gives an alias to the result column.
+
+4. Retrieve the average price of all services:
+
+SQL
+SELECT AVG(Price) AS AveragePrice
+FROM Service;
+Use code with caution.
+
+Explanation:
+
+AVG(Price) calculates the average of the Price column.
+AS AveragePrice gives an alias to the result column.
+
+5. Retrieve the company name, service name, and price for all services provided with a price greater than $800:
+
+SQL
+SELECT Company_Name, Service_Name, Price
+FROM Company
+INNER JOIN Service ON Company.Company_ID = Service.Company_ID
+WHERE Service.Price > 800;
+Use code with caution.
+
+Explanation:
+
+INNER JOIN joins the Company and Service tables based on the Company_ID column.
+WHERE Service.Price > 800 filters the rows where the Price in the Service table is greater than 800.
+SELECT Company_Name, Service_Name, Price selects the Company_Name, Service_Name, and Price columns from the joined tables.

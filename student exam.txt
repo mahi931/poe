@@ -1,0 +1,60 @@
+Executing the Queries
+1. List all students names and their respective classes:
+
+SQL
+SELECT Name, Class
+FROM Students;
+Use code with caution.
+
+Explanation:
+
+This query selects the Name and Class columns from the Students table.
+2. Find any students who are enrolled in a Class but haven't taken any marks yet (don't have any entries in the Marks table):
+
+SQL
+SELECT s.Name, s.Class
+FROM Students s
+LEFT JOIN Marks m ON s.Student_ID = m.Student_ID
+WHERE m.Student_ID IS NULL;
+Use code with caution.
+
+Explanation:
+
+This query uses a LEFT JOIN to join the Students and Marks tables.
+The WHERE clause filters for students who don't have corresponding entries in the Marks table.
+3. Find the total number of students in the database:
+
+SQL
+SELECT COUNT(*) AS total_students
+FROM Students;
+Use code with caution.
+
+Explanation:
+
+This query counts the number of rows in the Students table and gives an alias total_students to the result.
+4. Find the marks of all students in Math:
+
+SQL
+SELECT s.Name, m.Marks
+FROM Students s
+INNER JOIN Marks m ON s.Student_ID = m.Student_ID
+WHERE m.Subject = 'Math';
+Use code with caution.
+
+Explanation:
+
+This query joins the Students and Marks tables based on the Student_ID column.
+The WHERE clause filters the results to only include rows where the subject is 'Math'.
+The query selects the Name from the Students table and the Marks from the Marks table for the filtered rows.
+5. Find the total count who have got 'A' and 'A+' grade:
+
+SQL
+SELECT COUNT(*) AS total_A_and_A_plus_grades
+FROM Marks
+WHERE Grade IN ('A', 'A+');
+Use code with caution.
+
+Explanation:
+
+This query counts the number of rows in the Marks table where the Grade is either 'A' or 'A+'.
+Remember to execute these queries in your database management system to get the desired results.

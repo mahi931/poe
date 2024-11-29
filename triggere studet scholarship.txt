@@ -1,0 +1,51 @@
+Creating the Trigger:
+
+SQL
+CREATE TRIGGER DeleteScholarshipOnGPADrop
+ON Students
+AFTER UPDATE
+AS
+BEGIN
+    DECLARE @StudentID INT;
+    
+    SELECT @StudentID = inserted.StudentID
+    FROM inserted
+    WHERE inserted.GPA < 3.0;
+
+    IF @StudentID IS NOT NULL
+        DELETE FROM Scholarships
+        WHERE StudentID = @StudentID;
+END;
+Use code with caution.
+
+Explanation:
+
+Trigger Creation:
+
+We create an AFTER UPDATE trigger on the Students table. This means the trigger will fire after any update operation on the Students table.
+Identifying the Affected Student:
+
+The inserted table contains the new values of the updated row.
+We select the StudentID of the updated row and store it in the @StudentID variable.
+Deleting Scholarships (if necessary):
+
+If the @StudentID is not NULL (meaning the GPA has dropped below 3.0), we delete any corresponding scholarships from the Scholarships table using the DELETE statement.
+How it Works:
+
+A student's GPA is updated.
+The trigger fires.
+The trigger checks if the new GPA is below 3.0.
+If it is, the trigger deletes any scholarships associated with that student.
+Important Note:
+
+Ensure that you have appropriate indexes on the StudentID column in both tables to optimize the performance of the trigger.
+Consider additional error handling and logging mechanisms to improve the robustness of the trigger.
+Test the trigger thoroughly to ensure it works as expected under various scenarios.
+By implementing this trigger, you can automatically maintain the integrity of the Scholarships table based on changes in student GPAs.
+
+
+
+
+
+
+

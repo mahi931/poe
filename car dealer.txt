@@ -1,0 +1,80 @@
+Executing the Queries:
+
+1] Find the average price of non-electric cars:
+
+SQL
+SELECT AVG(price) AS avg_price_non_electric
+FROM Cars
+WHERE is_electric = 0;
+Use code with caution.
+
+Explanation:
+
+SELECT AVG(price) AS avg_price_non_electric calculates the average price of non-electric cars and gives an alias to the result column.
+FROM Cars specifies the table to query.
+WHERE is_electric = 0 filters the rows where the is_electric column is 0 (non-electric cars).
+
+2] Find the car models with the highest average price for each car dealer:
+
+SQL
+SELECT dealer_name, MAX(avg_price) AS highest_avg_price
+FROM (
+    SELECT dealer_name, AVG(price) AS avg_price
+    FROM Cars
+    INNER JOIN CarDealers ON Cars.dealer_id = CarDealers.dealer_id
+    GROUP BY dealer_name
+) AS AvgPricesPerDealer;
+Use code with caution.
+
+Explanation:
+
+The inner query:
+
+INNER JOIN joins the Cars and CarDealers tables based on the dealer_id column.
+GROUP BY dealer_name groups the results by dealer_name.
+AVG(price) AS avg_price calculates the average price for each dealer.
+The outer query:
+
+MAX(avg_price) AS highest_avg_price finds the maximum average price for each dealer.
+SELECT dealer_name, MAX(avg_price) AS highest_avg_price selects the dealer_name and the maximum average price.
+
+3]Find the total number of electric and non-electric cars:
+
+SQL
+SELECT 
+    SUM(CASE WHEN is_electric = 1 THEN 1 ELSE 0 END) AS total_electric_cars,
+    SUM(CASE WHEN is_electric = 0 THEN 1 ELSE 0 END) AS total_non_electric_cars
+FROM Cars;
+Use code with caution.
+
+Explanation:
+
+The CASE WHEN expressions count the number of electric and non-electric cars.
+SUM adds up the counts.
+
+4]Select all car if they are in before 2024 and also show their electric status, along with their corresponding dealer city and delivery time:
+
+SQL
+SELECT Cars.make, Cars.model, Cars.year, Cars.is_electric, CarDealers.city, CarDealers.delivery_time_days
+FROM Cars
+INNER JOIN CarDealers ON Cars.dealer_id = CarDealers.dealer_id
+WHERE Cars.year < 2024;
+Use code with caution.
+
+Explanation:
+
+INNER JOIN joins the Cars and CarDealers tables based on the dealer_id column.
+WHERE Cars.year < 2024 filters the rows where the year is less than 2024.
+SELECT Cars.make, Cars.model, Cars.year, Cars.is_electric, CarDealers.city, CarDealers.delivery_time_days selects the specified columns from the joined tables.
+
+5]Delete all non-electric cars where the mileage is less than 30,000:
+
+SQL
+DELETE FROM Cars
+WHERE is_electric = 0 AND mileage < 30000;
+Use code with caution.
+
+Explanation:
+
+DELETE FROM Cars deletes rows from the Cars table.
+WHERE is_electric = 0 AND mileage < 30000 filters the rows to be deleted.

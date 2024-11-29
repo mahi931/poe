@@ -1,0 +1,79 @@
+Executing the Queries
+i. Write a query to display PatNo, PatName and corresponding DocName for each Patient.
+
+SQL
+SELECT p.PatNo, p.PatName, d.DocName
+FROM Patients p
+INNER JOIN Doctors d ON p.DocID = d.DocID;
+Use code with caution.
+
+Explanation:
+
+INNER JOIN joins the Patients and Doctors tables based on the DocID column.
+The query selects the PatNo, PatName from the Patients table and the DocName from the Doctors table.
+ii. Write a query to display the list of all doctors whose No Of OpdDays are more than 3.
+
+SQL
+SELECT DocName
+FROM Doctors
+WHERE NoOfOpdDays > 3;
+Use code with caution.
+
+Explanation:
+
+WHERE NoOfOpdDays > 3 filters the rows where the NoOfOpdDays is greater than 3.
+SELECT DocName selects the DocName from the Doctors table.
+iii. Write a query to display DocName, Department, PatName and DocID where DocID is 101.
+
+SQL
+SELECT d.DocName, d.Department, p.PatName, p.DocID
+FROM Doctors d
+INNER JOIN Patients p ON d.DocID = p.DocID
+WHERE d.DocID = 101;
+Use code with caution.
+
+Explanation:
+
+INNER JOIN joins the Doctors and Patients tables based on the DocID column.
+WHERE d.DocID = 101 filters the rows where the DocID in the Doctors table is 101.
+The query selects the DocName, Department from the Doctors table and the PatName, DocID from the Patients table.
+iv. Write a query to display total number of Different Departments from Patient's table.
+
+SQL
+SELECT COUNT(DISTINCT Department) AS TotalDepartments
+FROM Patients;
+Use code with caution.
+
+Explanation:
+
+COUNT(DISTINCT Department) counts the number of distinct departments in the Patients table.
+AS TotalDepartments gives an alias to the result column.
+v. Write a query to display all patient of Mukesh Jain.
+
+SQL
+SELECT p.PatName
+FROM Patients p
+INNER JOIN Doctors d ON p.DocID = d.DocID
+WHERE d.DocName = 'MukeshJain';
+Use code with caution.
+
+Explanation:
+
+INNER JOIN joins the Patients and Doctors tables based on the DocID column.
+WHERE d.DocName = 'MukeshJain' filters the rows where the DocName in the Doctors table is 'MukeshJain'.
+The query selects the PatName from the Patients table.
+Remember to execute these queries in your database management system to get the desired results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gemini can 
